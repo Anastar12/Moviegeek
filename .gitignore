@@ -5,7 +5,7 @@ prs
 venv
 recommender/migrations
 collector/migrations
-.prs
+# .prs
 cluster.png
 */__pycache__/*
 **/__pycache__/*
