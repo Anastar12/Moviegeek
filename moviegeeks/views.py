@@ -141,7 +141,6 @@ def get_api_key():
     return cred['omdb_apikey']
 
 
-
 def get_genres():
     return Genre.objects.all().values('name').distinct()
 
