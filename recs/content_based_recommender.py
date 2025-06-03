@@ -24,10 +24,21 @@ class ContentBasedRecs(base_recommender):
 
     @staticmethod
     def seeded_rec(content_ids, take=6):
-        data = LdaSimilarity.objects.filter(source__in=content_ids) \
-                   .order_by('-similarity') \
-                   .values('target', 'similarity')[:take]
+        # content_ids = [int(i) for i in content_ids]
+        print(f'Looking for similar films, source={content_ids}, take={take}')
+        qs = LdaSimilarity.objects.filter(source__in=content_ids)
+        print('Count in queryset:', qs.count())
+        data = qs.order_by('-similarity').values('target', 'similarity')[:take]
+        print('Data:', list(data))
         return list(data)
+        # data = LdaSimilarity.objects.filter(source__in=content_ids) \
+        #            .order_by('-similarity') \
+        #            .values('target', 'similarity')[:take]
+        
+        # print(f'lda_count:{LdaSimilarity.objects.count()}')
+        # print(f'lda_content_count:{LdaSimilarity.objects.filter(source=content_ids).count()}')
+
+        # return list(data)
 
     def recommend_items_by_ratings(self,
                                    user_id,

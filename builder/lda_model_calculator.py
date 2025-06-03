@@ -1,7 +1,8 @@
 import os
 import sqlite3
-import tqdm
+from tqdm import tqdm
 import psycopg2
+import psycopg2.extras
 from scipy.sparse import coo_matrix
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "prs_project.settings")
@@ -63,7 +64,7 @@ def load_data():
 
 class LdaModel(object):
 
-    def __init__(self, min_sim=0.1):
+    def __init__(self, min_sim=0.05):
         self.dirname, self.filename = os.path.split(os.path.abspath(__file__))
         self.min_sim = min_sim
         self.db = settings.DATABASES['default']['ENGINE']
@@ -82,7 +83,7 @@ class LdaModel(object):
         self.build_lda_model(data, docs, NUM_TOPICS)
 
     @staticmethod
-    def tokenize(self, data):
+    def tokenize(data):
         tokenizer = RegexpTokenizer(r'\w+')
 
         return [tokenizer.tokenize(d) for d in data]

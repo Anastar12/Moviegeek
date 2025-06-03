@@ -44,7 +44,7 @@ class FeatureWeightedLinearStacking(base_recommender):
 
         cb_recs = self.cb.recommend_items_by_ratings(user_id, active_user_items, num * 5)
         cf_recs = self.cf.recommend_items_by_ratings(user_id, active_user_items, num * 5)
-
+        print(f"Active user items: {len(active_user_items)}")
         return self.merge_predictions(user_id, cb_recs, cf_recs, num)
 
     def recommend_items(self, user_id, num=6):

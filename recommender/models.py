@@ -10,7 +10,7 @@ class MovieDescriptions(models.Model):
     sim_list = models.CharField(max_length=512, default='')
 
     class Meta:
-        db_table = 'movie_description'
+        db_table = 'movie_description_5'
 
     def __str__(self):
         return "{}: {}".format(self.imdb_id, self.title)
@@ -23,7 +23,7 @@ class LdaSimilarity(models.Model):
     similarity = models.DecimalField(max_digits=8, decimal_places=7)
 
     class Meta:
-        db_table = 'lda_similarity'
+        db_table = 'lda_similarity_2'
 
     def __str__(self):
         return "[({} => {}) sim = {}]".format(self.source,

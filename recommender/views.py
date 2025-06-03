@@ -172,7 +172,7 @@ def similar_content(request, content_id, num=6):
 def recs_cb(request, user_id, num=6):
 
     sorted_items = ContentBasedRecs().recommend_items(user_id, num)
-
+    print(f'sorted_items:{sorted_items}')
     data = {
         'user_id': user_id,
         'data': sorted_items
@@ -211,7 +211,7 @@ def recs_cf(request, user_id, num=6):
     min_sim = request.GET.get('min_sim', 0.1)
     sorted_items = NeighborhoodBasedRecs(min_sim=min_sim).recommend_items(user_id, num)
 
-    print(f"cf sorted_items is: {sorted_items}")
+    # print(f"cf sorted_items is: {sorted_items}")
     data = {
         'user_id': user_id,
         'data': sorted_items
